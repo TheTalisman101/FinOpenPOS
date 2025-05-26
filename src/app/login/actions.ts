@@ -3,12 +3,13 @@
 import { cookies } from 'next/headers'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
+import { type RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies'
 
 import { createClient } from '@/lib/supabase/server'
 
 export async function login(formData: FormData) {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  // Get cookies within the server action scope
+  const supabase = createClient()
 
   // type-casting here for convenience
   // in practice, you should validate your inputs
@@ -29,8 +30,8 @@ export async function login(formData: FormData) {
 }
 
 export async function signup(formData: FormData) {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  // Get cookies within the server action scope
+  const supabase = createClient()
 
   // type-casting here for convenience
   // in practice, you should validate your inputs
@@ -51,6 +52,6 @@ export async function signup(formData: FormData) {
 }
 
 export async function generateExampleData(user_uid: string) {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  // Get cookies within the server action scope
+  const supabase = createClient()
 }
